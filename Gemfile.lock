@@ -156,7 +156,6 @@ GEM
       faraday (>= 2.0.1)
       faraday-multipart
       hashie
-    pg (1.5.4)
     psych (5.1.1.1)
       stringio
     puma (6.4.0)
@@ -274,7 +273,6 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   open-weather-ruby-client (~> 0.4.0)
-  pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.2)
   rails-controller-testing

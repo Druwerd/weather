@@ -116,12 +116,17 @@ RSpec.describe WeatherController, type: :request do
         }
       end
 
-      it 'logs the error and raises it' do
+      before do
         allow(fake_connector)
           .to receive(:call).and_raise(StandardError, 'Some error')
+      end
+
+      it 'logs the error and raises it and has 500 status' do
         expect(Rails.logger).to receive(:error).with(/Something went wrong. Details: Some error/)
-        expect { get '/weather/current', params: params }
-          .to raise_error('Some error')
+        expect do
+          get '/weather/current', params: params
+          expect(response).to have_http_status(500)
+        end.to raise_error('Some error')
       end
     end
   end

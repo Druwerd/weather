@@ -16,11 +16,6 @@ RSpec.describe Services::OpenWeatherConnector do
     instance_double('Services::OpenWeatherResponseBuilder', build: {})
   end
   let(:fake_open_weather_obj) do
-    # double('OpenWeather::Object',
-    #   main: double('Main', to_h: {}),
-    #   name: 'City', wind: 'Wind',
-    #   weather: [double('Weather', description: 'Clear')]
-    # )
     double('OpenWeather::Object')
   end
 

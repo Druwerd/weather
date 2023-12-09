@@ -68,3 +68,5 @@ end
 
 gem 'dotenv-rails'
 gem "open-weather-ruby-client", "~> 0.4.0"
+
+gem "yard", "~> 0.9.34"

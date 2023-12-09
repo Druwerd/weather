@@ -5,10 +5,7 @@ class WeatherController < ApplicationController
   end
 
   def current
-    if required_params.all?{|p| params[p].present? }
-      # @street = params[:street]
-      # @city = params[:city]
-      # @state = params[:state]
+    if valid_params?
       @zip_code = params[:zip_code]
 
       flash.notice = "Cached"
@@ -17,21 +14,21 @@ class WeatherController < ApplicationController
         weather_connector.call(zip: @zip_code)
       end
     else
-      missing_field_names = required_params.map{|p| p.to_s.humanize }.join(",")
-      flash.alert = "Missing #{missing_field_names}"
+      alert_missing_params
       render :index
     end
   end
 
   private
 
-  def set_weather_variables
-    @current_temp = @weather["temp"]
-    @feels_like = @weather["feels_like"]
-    @temp_min = @weather["temp_min"]
-    @temp_max = @weather["temp_max"]
+  def valid_params?
+    required_params.all? { |p| params[p].present? }
   end
 
+  def alert_missing_params
+    missing_param_names = required_params.map{|p| p.to_s.humanize }.join(",")
+    flash.alert = "Missing #{missing_param_names}"
+  end
 
   def clear_notices
     flash.alert = nil

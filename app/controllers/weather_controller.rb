@@ -17,6 +17,10 @@ class WeatherController < ApplicationController
       alert_missing_params
       render :index
     end
+  rescue StandardError => e
+    Rails.logger.error("Something went wrong. Details: #{e.message}")
+    # TODO: create alert
+    raise e # reraise error to render Rails error page
   end
 
   private

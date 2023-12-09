@@ -1,0 +1,14 @@
+<div class="text-center">
+  <h1 class="mt-4">Current Weather for <%= @weather[:city_name] || @zip_code %></h1>
+  <h2><%= @weather[:description].capitalize %></h2>
+
+  <div class="card mt-4">
+    <div class="card-body">
+      <h3 class="card-title">Temperatures</h3>
+      <p class="card-text">Current: <%= @weather[:temp] %>°F</p>
+      <p class="card-text">Feels Like: <%= @weather[:feels_like] %>°F</p>
+      <p class="card-text">Low: <%= @weather[:temp_min] %>°F</p>
+      <p class="card-text">High: <%= @weather[:temp_max] %>°F</p>
+    </div>
+  </div>
+</div>

@@ -6,7 +6,7 @@ class WeatherController < ApplicationController
 
   def current
     if valid_params?
-      @zip_code = weather_params[:zip_code]
+      @zip_code, _ = weather_params[:zip_code].split("-")
 
       flash.notice = "Cached"
       @weather = Rails.cache.fetch(@zip_code.to_s, expires_in: 30.minutes) do
@@ -14,7 +14,7 @@ class WeatherController < ApplicationController
         weather_connector.call(zip: @zip_code)
       end
     else
-      alert_missing_params
+      alert_invalid_params
       render :index
     end
   rescue StandardError => e
@@ -33,15 +33,24 @@ class WeatherController < ApplicationController
   end
 
   def valid_params?
-    required_params.all? { |p| weather_params[p].present? }
+    required_params.all? { |p| weather_params[p].present? } &&
+      valid_zip?
   end
 
-  def alert_missing_params
+  def valid_zip?
+    weather_params[:zip_code].to_s.match?(/^\d{5}(\-\d{4})?$/)
+  end
+
+  def alert_invalid_params
     missing_params = required_params.select{ |p| weather_params[p].blank? }
     missing_param_names = missing_params
       .map{ |p| p.to_s.humanize }.join(", ")
 
-    flash.alert = "Missing #{missing_param_names}"
+    message = ""
+    message += "Missing #{missing_param_names}. " if missing_params.any?
+    message += "Invalid zip code." if weather_params[:zip_code].present? && !valid_zip?
+
+    flash.alert = message.strip
   end
 
   def clear_notices

@@ -64,9 +64,8 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  gem "yard", "~> 0.9.34"
 end
 
 gem 'dotenv-rails'
 gem "open-weather-ruby-client", "~> 0.4.0"
-
-gem "yard", "~> 0.9.34"

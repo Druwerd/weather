@@ -32,7 +32,8 @@ class WeatherController < ApplicationController
   rescue StandardError => e
     Rails.logger.error("Something went wrong. Details: #{e.message}")
     # TODO: create alert
-    raise e # reraise error to render Rails error page
+    flash.alert = "Something went wrong. Please check you input and try again later."
+    render :index
   end
 
   private

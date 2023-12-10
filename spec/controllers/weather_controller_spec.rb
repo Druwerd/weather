@@ -123,10 +123,9 @@ RSpec.describe WeatherController, type: :request do
 
       it 'logs the error and raises it and has 500 status' do
         expect(Rails.logger).to receive(:error).with(/Something went wrong. Details: Some error/)
-        expect do
-          get '/weather/current', params: params
-          expect(response).to have_http_status(500)
-        end.to raise_error('Some error')
+        get '/weather/current', params: params
+        expect(flash.alert).to eq('Something went wrong. Please check you input and try again later.')
+        expect(response).to have_http_status(:success)
       end
     end
   end

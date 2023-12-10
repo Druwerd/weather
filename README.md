@@ -37,8 +37,16 @@ Edit .env with your OpenWeather API key.
 `bin/dev`
 
 ## Testing
-Run test with
+Run test with:
+
 `rspec`
+
+## Documentation
+This project is documented using YARD.
+
+Existing code documenation is located the `doc` folder of the project. See [doc/index.html](doc/index.html)
+
+To regenerate the docs run: `rake yard`
 
 ## Screenshots
 Homepage

@@ -12,7 +12,7 @@ The Rails `WeatherController#current` action calls `Services::OpenWeatherConnect
 `OpenWeatherConnector` uses `OpenWeatherResponseBuilder` to build a data response for the `WeatherController`. `OpenWeatherResponseBuilder` is based on the factory design pattern. This will allow us to easily extend the application to support multiple API data sources or multiple endpoint as we add features.
 
 ## Scalability
-This application is stateless and can run with or without a database. The no database version is on a separate branch: [remove-db](https://github.com/Druwerd/weather/branches).
+This application is stateless and runs without a database. There is a database version is on a separate branch: [with-db](https://github.com/Druwerd/weather/tree/with-db) for future feature expansion that may require a db.
 
 To scale up the application you could setup your infrastructure architecture such that web application instances and Redis cluster nodes as are dynamically increased as load increases. See example diagram below.
 
@@ -24,13 +24,12 @@ Additionally you could server static assets such as images, css, javascript from
 - Ruby 3
 - Rails 7
 - Redis
-- Postgres (optional see branch [remove-db](https://github.com/Druwerd/weather/branches))
 
-## App Setup
+## App Setup for local development
 ```sh
-bundle install
-rails db:setup
-rails s
+bundle
+bin/setup
+bin/dev
 ```
 
 ## Testing

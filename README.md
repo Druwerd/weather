@@ -29,10 +29,15 @@ Additionally you could server static assets such as images, css, javascript from
 ```sh
 bundle
 bin/setup
-bin/dev
+cp .env.sample .env
 ```
+Edit .env with your OpenWeather API key.
+
+## Run app
+`bin/dev`
 
 ## Testing
+Run test with
 `rspec`
 
 ## Screenshots

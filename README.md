@@ -16,7 +16,7 @@ This application is stateless and runs without a database. There is a database v
 
 To scale up the application you could setup your infrastructure architecture such that web application instances and Redis cluster nodes as are dynamically increased as load increases. See example diagram below.
 
-Additionally you could server static assets such as images, css, javascript from a CDN.
+Additionally you could serve static assets such as images, css, javascript from a CDN.
 
 ![infra](./doc/app-infra-diagram.png)
 

@@ -5,7 +5,7 @@ Rails app to get weather from US address using OpenWeather API.
 ## Application Design
 ![diagram](./doc/weather-rails-app-2023-12-09-234332.png)
 
-Rails `WeatherController#current` calls `Services::OpenWeatherConnector` which is responsible for calling the OpenWeather API.
+The Rails `WeatherController#current` action calls `Services::OpenWeatherConnector` which is encapsulates calling the OpenWeather API and build a response.
 
 `OpenWeatherConnector` uses the [open-weather-ruby-client gem](https://github.com/dblock/open-weather-ruby-client).
 
@@ -14,7 +14,7 @@ Rails `WeatherController#current` calls `Services::OpenWeatherConnector` which i
 ## Scalability
 This application is stateless and can run with or without a database. The no database version is on a separate branch: [remove-db](https://github.com/Druwerd/weather/branches).
 
-The to scale up the application you could setup your infrastructure architecture such that web application instances and Redis cluster nodes as are dynamically increased as load increases. See example diagram below.
+To scale up the application you could setup your infrastructure architecture such that web application instances and Redis cluster nodes as are dynamically increased as load increases. See example diagram below.
 
 Additionally you could server static assets such as images, css, javascript from a CDN.
 
@@ -24,7 +24,7 @@ Additionally you could server static assets such as images, css, javascript from
 - Ruby 3
 - Rails 7
 - Redis
-- Postgres
+- Postgres (optional see branch [remove-db](https://github.com/Druwerd/weather/branches))
 
 ## App Setup
 ```sh

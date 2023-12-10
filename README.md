@@ -44,7 +44,7 @@ Run test with:
 ## Documentation
 This project is documented using YARD.
 
-Existing code documenation is located the `doc` folder of the project. See [doc/index.html](doc/index.html)
+Existing code documenation is located the `doc` folder of the project: `open doc/index.html`
 
 To regenerate the docs run: `rake yard`
 
